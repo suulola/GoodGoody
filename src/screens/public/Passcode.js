@@ -4,7 +4,7 @@ import { COLOR, URL } from '../../components/helpers/helpers';
 
 
 
-export class Passcode extends Component {
+class Passcode extends Component {
   state = {
     details: {
       name: 'Suulola',
@@ -149,15 +149,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10
 
-  },
-  passwordContainer: {
-    borderWidth: 1,
-    borderStyle: "dotted",
-    borderColor: 'green',
-    marginHorizontal: 10,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center"
   },
   inputField: {
     flex: 1,

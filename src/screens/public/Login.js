@@ -3,8 +3,7 @@ import { Text, View, Picker, StyleSheet, TouchableOpacity, Linking, TextInput } 
 import { COLOR, URL } from '../../components/helpers/helpers';
 
 
-
-export class Login extends Component {
+class Login extends Component {
   state = {
     selectedCountry: null,
     phoneNumber: "",
@@ -18,7 +17,7 @@ export class Login extends Component {
       selectCountryInvalid: false
     })
   }
-  submitLoginDetails = () => {
+  submitLoginDetails = async () => {
     if(this.state.selectedCountry == null || this.state.selectedCountry == "Select a Country") {
       this.setState({
         selectCountryInvalid: true
@@ -32,10 +31,43 @@ export class Login extends Component {
       })
       return;
     }
+    // 1. If user is unknown and there is no pnumber pair in async storage do the below
+    if(true) {
+          // generate a random 6 digit number
+     let confirmCode = Math.floor(Math.random() * 10 * 1000)
+     try {
+      const formatedNumber = `234${this.state.phoneNumber.slice(1)}`
+      const userId = 68517951
+      const password = 'wonder09'
+      const sender = "GoodGoody"
+      const content = ` Hello world ${confirmCode} `
+    //  const response = await fetch(`http://developers.cloudsms.com.ng/api.php?userid=${userId}&password=${password}&type=5&destination=${formatedNumber}&sender=${sender}&message=${content}`, {
+    //      method: 'POST',
+    //      headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //    })
+    //    const responseJSON = await response.json()
+       console.log(formatedNumber)
+       console.log(content)
+       this.props.navigation.navigate("Verification", {
+        details: this.state,
+        code: confirmCode
+      })
 
-    this.props.navigation.navigate("Passcode", {
-      details: this.state
-    })
+     } catch (error) {
+       alert(error)
+
+     }
+
+    }
+    // send the random digit to the user via SMS, you can try CloudSMS for this. or you can use email instead
+    // pass the random digit to the Verification page thru params and then navigate to that screen
+    // user gets the digits, inputs it, and then is redirected to the login page
+
+    // 2. If user is known and pnumber exist in async storage, take user to login page
+
+
   }
 
 
@@ -95,11 +127,8 @@ export class Login extends Component {
         onChangeText={phoneNumber => this.setState({ phoneNumber })}
         keyboardType="phone-pad"
          />
+         <Text style={styles.smallText}>You will get an SMS with a one-time access code</Text>
      </View>
-
-
-
-
 
 
         </View>
@@ -137,10 +166,11 @@ const styles = StyleSheet.create({
     width: '70%'
   },
   bottomContainer: {
-    height: 80,
+    height: 100,
     width: '100%',
     alignItems: "center",
-    paddingVertical: 5
+    paddingVertical: 5,
+    marginBottom: 10
   },
   row: {
     flexDirection: 'row',
@@ -172,6 +202,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginVertical: 20,
     fontSize: 20
+  },
+  smallText: {
+    color: "rgb(200, 199, 199)",
+    fontSize: 10,
+    marginTop: 5
   }
 })
 

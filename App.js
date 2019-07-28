@@ -24,6 +24,8 @@ import Login from './src/screens/public/Login';
 import Home from './src/screens/public/Home';
 import Passcode from './src/screens/public/Passcode';
 import DrawerNavigator from './src/screens/public/DrawerNavigator';
+import Verification from './src/screens/public/Verification';
+import SetPasscode from './src/screens/public/SetPasscode';
 
 
 
@@ -44,15 +46,15 @@ class App extends Component {
 const DrawerStackGuest = createDrawerNavigator({
   Home: createStackNavigator({ Home }, {headerMode: "none"}),
   SignUp: createStackNavigator({ SignUp }),
-  Login: createStackNavigator({ Login, Passcode }, {headerMode: "none"})
+  Login: createStackNavigator({ Login, Verification, Passcode, SetPasscode })
 }, {
   initialRouteName: 'Home',
   // contentComponent: DrawerNavigator
 })
 
-// const DrawerStackUser = createDrawerNavigator({
-//   Dashboard: createStackNavigator({ Dashboard})
-// })
+const DrawerStackUser = createDrawerNavigator({
+  Dashboard: createStackNavigator({ Dashboard})
+})
 
 
 const RootStackGuest = createStackNavigator({
@@ -63,12 +65,12 @@ const RootStackGuest = createStackNavigator({
 
 })
 
-// const RootStackUser = createStackNavigator({
-//   DrawerStack: {screen: DrawerStackUser}
-// })
+const RootStackUser = createStackNavigator({
+  DrawerStack: {screen: DrawerStackUser}
+})
 
 const AppContainerForGuest = createAppContainer(RootStackGuest)
-// const AppContainerForUser = createAppContainer(RootStackUser)
+const AppContainerForUser = createAppContainer(RootStackUser)
 
 
 export default App;
