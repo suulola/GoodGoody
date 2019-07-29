@@ -45,16 +45,16 @@ class App extends Component {
 // };
 
 const DrawerStackGuest = createDrawerNavigator({
-  Home: createStackNavigator({ Home }, {headerMode: "none"}),
+  Home: createStackNavigator({ Home, Login, Passcode }, {headerMode: "none"}),
   SignUp: createStackNavigator({ SignUp }),
-  Login: createStackNavigator({ Login, Verification, Passcode, SetPasscode, Bio }, {headerMode: "none"})
+  Login: createStackNavigator({ Verification, Login, Passcode, SetPasscode, Bio }, {headerMode: "none"})
 }, {
   initialRouteName: 'Home',
   // contentComponent: DrawerNavigator
 })
 
 const DrawerStackUser = createDrawerNavigator({
-  Dashboard: createStackNavigator({ Dashboard}, {headerMode: "none"})
+  Dashboard: createStackNavigator({ Dashboard})
 }, {
  initialRouteName: 'Dashboard',
 })

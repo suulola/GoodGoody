@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 import { COLOR } from '../../components/helpers/helpers';
 import Icon from 'react-native-vector-icons/Ionicons'
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 class SetPasscode extends Component {
@@ -24,6 +26,8 @@ class SetPasscode extends Component {
 
   }
   submitPasscode = () => {
+    const {details} = this.props.navigation.state.params
+
     const {password_1, password_2, password_3, password_4, confirm_password_1, confirm_password_2, confirm_password_3, confirm_password_4} = this.state
 
     if(password_1 == undefined || password_2 == undefined || password_3 == undefined || password_4 == undefined || confirm_password_1 == undefined|| confirm_password_2 == undefined || confirm_password_3 == undefined || confirm_password_4 == undefined ) {
@@ -34,7 +38,10 @@ class SetPasscode extends Component {
       let computedConfirmPassword = `${confirm_password_1}${confirm_password_2}${confirm_password_3}${confirm_password_4}`
 
       if(computedPassword === computedConfirmPassword) {
-        this.props.navigation.navigate("Bio")
+        details.pin = +computedPassword
+        this.props.navigation.navigate("Bio", {
+          details: details
+        })
       }else {
         alert("now working yet")
       }
@@ -42,6 +49,8 @@ class SetPasscode extends Component {
 
   }
   render() {
+    const {details} = this.props.navigation.state.params
+console.log(details)
     return (
       <View style={styles.container}>
 

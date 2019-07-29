@@ -1,41 +1,60 @@
 import React, { Component, Fragment } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
 import { COLOR, URL } from '../../components/helpers/helpers';
-
-
+import { logIn } from '../../store/action/auth';
+import {connect} from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Passcode extends Component {
   state = {
-    details: {
-      name: 'Suulola',
       password_1: "",
       password_2: "",
       password_3: "",
       password_4: "",
-    }
   }
   submitLoginDetails = () => {
+    const {details} = this.props.navigation.state.params
+
     const {password_1, password_2, password_3, password_4} = this.state
 
     if(password_1 == undefined || password_2 == undefined || password_3 == undefined || password_4 == undefined) {
       return alert('Fill Inputs')
     }
       let computedPassword = `${password_1}${password_2}${password_3}${password_4}`
-      alert(computedPassword)
+      if(+computedPassword === +details.password ) {
+        this.props.logIn()
+      }else {
+        alert("Wrong Passcode")
+      }
+  }
+  switchAccount = async() => {
+    const keys = ['phoneNumber', 'password', 'email']
+    try{
+      await AsyncStorage.multiRemove(keys)
+      this.props.navigation.navigate("Login")
+    }catch(error) {
+      console.log(error)
+    }
 
 
   }
+
+  resetPIN = () => {
+
+  }
+
   render() {
-    const {details} = this.state
+    const {details} = this.props.navigation.state.params
     return (
         <View style={styles.container}>
           <View style={styles.topContainer}>
-          <Text> Welcome Back {details.name} </Text>
+          <Text> Welcome Back +234{details.phoneNumber} {details.email !== null && details.email } </Text>
        <View style={styles.row}>
        <Text> Not you </Text>
-        <TouchableOpacity>
-          <Text style={styles.link}>Switch account</Text>
-        </TouchableOpacity>
+
+       <TouchableOpacity onPress={this.switchAccount} >
+       <Text style={styles.link}>Switch account</Text>
+       </TouchableOpacity>
        </View>
        <Text>Enter your PIN</Text>
        <View style={styles.overallPasswordContainer}>
@@ -53,6 +72,7 @@ class Passcode extends Component {
            secureTextEntry={true}
            />
       </View>
+
        {/* 2 */}
       <View style={styles.passwordContainer}>
          <TextInput
@@ -178,4 +198,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Passcode
+export default connect(null,{logIn})(Passcode)

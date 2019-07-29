@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, Picker, StyleSheet, TouchableOpacity, Linking, TextInput } from 'react-native'
 import { COLOR, URL } from '../../components/helpers/helpers';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 class Login extends Component {
@@ -17,6 +19,8 @@ class Login extends Component {
       selectCountryInvalid: false
     })
   }
+
+
   submitLoginDetails = async () => {
     if(this.state.selectedCountry == null || this.state.selectedCountry == "Select a Country") {
       this.setState({
@@ -33,7 +37,7 @@ class Login extends Component {
     }
     // 1. If user is unknown and there is no pnumber pair in async storage do the below I THINK IT SHOULD BE FIREBASE AUTH RATHER
     if(true) {
-          // generate a random 6 digit number
+    // generate a random 6 digit number
      let confirmCode = Math.floor(Math.random() * 10 * 1000)
      try {
       const formatedNumber = `234${this.state.phoneNumber.slice(1)}`
@@ -69,6 +73,7 @@ class Login extends Component {
 
 
   }
+
 
 
   componentDidMount() {

@@ -4,6 +4,7 @@ import TextInputWithLabel from '../../components/common/TextInputWithLabel';
 import { COLOR } from '../../components/helpers/helpers';
 import { logIn } from '../../store/action/auth';
 import {connect} from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Bio extends Component {
   state={
@@ -11,17 +12,37 @@ class Bio extends Component {
     middleName: "",
     surname: "",
     isInvalid: false,
-    phoneNumber: '07061972413',
     email: ""
   }
 
-  registerUserBio = () => {
-    this.props.logIn()
+  registerUserBio = async () => {
+    const {details} = this.props.navigation.state.params
+
+    if(this.state.firstName == "" || this.state.surname == "" || this.state.email == "" ) {
+      alert("Required fields not filled")
+      return;
+    }
+    try {
+      await AsyncStorage.setItem('password', `${details.pin}`)
+      await AsyncStorage.setItem('phoneNumber', `${details.phoneNumber}`)
+      await AsyncStorage.setItem('firstName', this.state.firstName)
+      await AsyncStorage.setItem('email', this.state.email)
+      this.props.logIn()
+
+    } catch(e) {
+      console.log(e)
+      alert('Something went wrong')
+    }
+
+
+
   }
 
 
 
   render() {
+    const {details} = this.props.navigation.state.params
+    console.log(details)
     return (
       <ScrollView style={styles.container}>
        <View style={styles.topContainer}>
@@ -31,15 +52,20 @@ class Bio extends Component {
           placeholder="First Name"
           isInvalid={this.state.isInvalid}
           label="First Name"
+          onChangeText={firstName => this.setState({firstName})}
         />
        <TextInputWithLabel
           placeholder="Middle Name"
           label="Middle Name"
+          onChangeText={middleName => this.setState({middleName})}
+
         />
        <TextInputWithLabel
           placeholder="Surname"
           isInvalid={this.state.isInvalid}
           label="Surname"
+          onChangeText={surname => this.setState({surname})}
+
         />
         <View style={{height: 0.1, width: '100%', borderWidth: 0.3, borderColor: '#ced9db', marginVertical: 20}} ></View>
         <Text style={styles.text}>Contact Information</Text>
@@ -47,12 +73,14 @@ class Bio extends Component {
         <TextInputWithLabel
           label="Phone Number"
           editable={false}
-          value={this.state.phoneNumber}
+          value={details.phoneNumber}
           prefilled
         />
           <TextInputWithLabel
           placeholder="Email"
           label="Email address"
+          onChangeText={email => this.setState({email})}
+
         />
        </View>
        <View style={styles.bottomContainer}>

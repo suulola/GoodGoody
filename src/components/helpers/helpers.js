@@ -4,7 +4,8 @@ export const COLOR = {
   buttonBackground: "green",
   linkTextColor: "blue",
   greyText: "rgb(200, 199, 199)",
-  buttonText: 'white'
+  buttonText: 'white',
+  icon: "#000"
 }
 
 export const URL = {

@@ -31,22 +31,20 @@ class Verification extends Component {
     let computedCode = +`${code_1}${code_2}${code_3}${code_4}`;
     console.log(code, "compare", computedCode)
     if( +code == +computedCode) {
-      this.props.navigation.navigate("SetPasscode")
+      this.props.navigation.navigate("SetPasscode", {
+        details: details
+      })
     }else {
-      alert('Wrong COde. Please Try again!!!')
+      alert('Wrong Code. Please Try again!!!')
     }
   };
   componentDidMount() {
-    const {details, code} = this.props.navigation.state.params
+    const code = this.props.navigation.state.params.code
     alert(code)
-
   }
 
 
   render() {
-    const {details, code} = this.props.navigation.state.params
-    console.log(details, code)
-
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>

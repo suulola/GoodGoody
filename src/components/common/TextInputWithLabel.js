@@ -21,7 +21,7 @@ const TextInputWithLabel = (props) => {
 const styles = StyleSheet.create({
   inputText: {
     borderColor: "rgb(49, 49, 49)",
-    height: 35,
+    height: 45,
     borderRadius: 5,
     backgroundColor: COLOR.inputBackground
   }
