@@ -34,7 +34,7 @@ class SetPasscode extends Component {
       let computedConfirmPassword = `${confirm_password_1}${confirm_password_2}${confirm_password_3}${confirm_password_4}`
 
       if(computedPassword === computedConfirmPassword) {
-        alert('hello')
+        this.props.navigation.navigate("Bio")
       }else {
         alert("now working yet")
       }

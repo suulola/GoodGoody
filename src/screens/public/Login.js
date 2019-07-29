@@ -31,7 +31,7 @@ class Login extends Component {
       })
       return;
     }
-    // 1. If user is unknown and there is no pnumber pair in async storage do the below
+    // 1. If user is unknown and there is no pnumber pair in async storage do the below I THINK IT SHOULD BE FIREBASE AUTH RATHER
     if(true) {
           // generate a random 6 digit number
      let confirmCode = Math.floor(Math.random() * 10 * 1000)
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     borderColor: "#000"
   },
   welcomeText: {
-    color: "rgb(200, 199, 199)",
+    color: COLOR.greyText,
     marginTop: 50,
     marginVertical: 20,
     fontSize: 20

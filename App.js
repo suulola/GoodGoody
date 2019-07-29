@@ -26,34 +26,37 @@ import Passcode from './src/screens/public/Passcode';
 import DrawerNavigator from './src/screens/public/DrawerNavigator';
 import Verification from './src/screens/public/Verification';
 import SetPasscode from './src/screens/public/SetPasscode';
-
+import Bio from './src/screens/public/Bio';
+import {connect} from "react-redux"
 
 
 class App extends Component {
   render() {
     return (
-      <AppContainerForGuest />
+     this.props.isLoggedIn ? <AppContainerForUser /> :  <AppContainerForGuest />
     )
   }
 }
 
 // const App = (props) => {
 //   return (
-// <AppContainerForGuest />
+// <AppContainerForGuest />89
 //   );
 // };
 
 const DrawerStackGuest = createDrawerNavigator({
   Home: createStackNavigator({ Home }, {headerMode: "none"}),
   SignUp: createStackNavigator({ SignUp }),
-  Login: createStackNavigator({ Login, Verification, Passcode, SetPasscode })
+  Login: createStackNavigator({ Login, Verification, Passcode, SetPasscode, Bio }, {headerMode: "none"})
 }, {
   initialRouteName: 'Home',
   // contentComponent: DrawerNavigator
 })
 
 const DrawerStackUser = createDrawerNavigator({
-  Dashboard: createStackNavigator({ Dashboard})
+  Dashboard: createStackNavigator({ Dashboard}, {headerMode: "none"})
+}, {
+ initialRouteName: 'Dashboard',
 })
 
 
@@ -67,10 +70,17 @@ const RootStackGuest = createStackNavigator({
 
 const RootStackUser = createStackNavigator({
   DrawerStack: {screen: DrawerStackUser}
+}, {
+  headerMode: "none"
+
 })
 
 const AppContainerForGuest = createAppContainer(RootStackGuest)
 const AppContainerForUser = createAppContainer(RootStackUser)
 
+const mapStateToProps = state => {
+return {
+  isLoggedIn: state.auth.isLoggedIn
+} }
 
-export default App;
+export default connect(mapStateToProps)(App);

@@ -3,6 +3,7 @@ export const COLOR = {
   inputBackground: "rgb(255, 250, 255)",
   buttonBackground: "green",
   linkTextColor: "blue",
+  greyText: "rgb(200, 199, 199)",
   buttonText: 'white'
 }
 
