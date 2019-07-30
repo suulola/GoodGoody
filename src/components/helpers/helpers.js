@@ -8,10 +8,19 @@ export const COLOR = {
   icon: "#000"
 }
 
+
+
+
+
+
+
 export const URL = {
   customerCare: "https://goodgoody.com",
   termsAndConditions: "https://goodgoody.com/terms",
 }
+
+
+
 
 export const SMSDetails = {
    token: "aXcouJFsTXyXZYmRjI7vY1woIkXi7f806Quy6xZAfbgdN33tnYP5ZBgnbBfBPt8TWRNTy2AbwU1fUaPM6RqPtsyL8O8olQyRKyQI",
