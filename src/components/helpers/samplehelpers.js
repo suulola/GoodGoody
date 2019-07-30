@@ -13,12 +13,12 @@ export const COLOR = {
 
 
 export const URL = {
-  customerCare: "https://goodgoody.com",
-  termsAndConditions: "https://goodgoody.com/terms",
+  customerCare: "https://XXXXXXXXXXXXX.com",
+  termsAndConditions: "https://XXXXXXXXXXXXXX.com/terms",
 }
 
 export const SMSDetails = {
-   token: "aXcouJFsTXyXZYmRjI7vY1woIkXi7f806Quy6xZAfbgdN33tnYP5ZBgnbBfBPt8TWRNTy2AbwU1fUaPM6RqPtsyL8O8olQyRKyQI",
+   token: "XXXXXXXXXXXXXXXXXXXXXXXX",
    type: '0',
    sender: "GoodGoody"
 }
