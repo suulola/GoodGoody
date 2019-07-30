@@ -1,8 +1,7 @@
 # OSX
 #
 .DS_Store
-/src/components/helpers/helpers.js
-src/components/helpers/helpers.js
+
 # Xcode
 #
 build/
@@ -59,6 +58,4 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-
-*helpers.js
-
+src/components/helpers/helpers.js
