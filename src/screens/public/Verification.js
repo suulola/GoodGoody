@@ -38,12 +38,10 @@ class Verification extends Component {
       alert('Wrong Code. Please Try again!!!')
     }
   };
-  componentDidMount() {
-    const code = this.props.navigation.state.params.code
-    alert(code)
-  }
-
-
+  // componentDidMount() {
+  //   const code = this.props.navigation.state.params.code
+  //   alert(code)
+  // }
   render() {
     return (
       <View style={styles.container}>
