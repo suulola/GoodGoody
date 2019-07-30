@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, Picker, StyleSheet, TouchableOpacity, Linking, TextInput } from 'react-native'
-import { COLOR, URL } from '../../components/helpers/helpers';
+import { COLOR, URL, SMSDetails } from '../../components/helpers/helpers';
 import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 
@@ -40,20 +41,28 @@ class Login extends Component {
     // generate a random 6 digit number
      let confirmCode = Math.floor(Math.random() * 10 * 1000)
      try {
-      const formatedNumber = `234${this.state.phoneNumber.slice(1)}`
-      const userId = 68517951
-      const password = 'wonder09'
-      const sender = "GoodGoody"
-      const content = ` Hello world ${confirmCode} `
-    //  const response = await fetch(`http://developers.cloudsms.com.ng/api.php?userid=${userId}&password=${password}&type=5&destination=${formatedNumber}&sender=${sender}&message=${content}`, {
-    //      method: 'POST',
-    //      headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //    })
-    //    const responseJSON = await response.json()
-       console.log(formatedNumber)
-       console.log(content)
+      const to = `0${this.state.phoneNumber.slice(1)}`
+      const message = `Welcome to GoodGoody! Your Verification Code is ${confirmCode} `
+      const token = SMSDetails.token
+      const type= SMSDetails.type
+      const sender = SMSDetails.sender
+     const response = await fetch(`https://smartsmssolutions.com/api/json.php?sender=${sender}&to=${to}&message=${message}&type=${type}&routing=${3}&token=${token}`, {
+         method: 'POST',
+         headers: {
+          "Content-Type": "application/json"
+        },
+        body: {
+          sender,
+          to,
+          message,
+          type,
+          routing: 3,
+          token,
+        }
+
+       })
+       const responseJSON = await response.json()
+       console.log(responseJSON)
        this.props.navigation.navigate("Verification", {
         details: this.state,
         code: confirmCode
