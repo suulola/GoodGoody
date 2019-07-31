@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export class UpdateBio extends Component {
+export class Profile extends Component {
   render() {
     return (
       <View>
@@ -11,4 +11,4 @@ export class UpdateBio extends Component {
   }
 }
 
-export default UpdateBio
+export default Profile

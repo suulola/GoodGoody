@@ -1,7 +1,7 @@
 export const COLOR = {
   themeBackground: "rgb(245, 245, 245)",
   inputBackground: "rgb(255, 250, 255)",
-  buttonBackground: "green",
+  buttonBackground: "rgba(19, 223, 47, 0.6)",
   linkTextColor: "blue",
   greyText: "rgb(200, 199, 199)",
   buttonText: 'white',

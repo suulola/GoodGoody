@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import { COLOR } from '../helpers/helpers';
@@ -19,7 +19,9 @@ const DashboardCard = props => {
        <View style={{justifyContent: "space-around"}}>
          <Text style={{fontSize: 20, fontFamily: "Roboto"}}>{props.cardTitle}</Text>
          <Text style={{color: 'white', marginRight: 25, fontFamily: "san-serif-thin" }} >{props.cardText}</Text>
-         <TouchableOpacity  style={{
+         <TouchableOpacity
+         onPress={props.onPress}
+         style={{
            width: 150,
            backgroundColor: COLOR.buttonBackground, padding: 10, marginVertical: 10, borderRadius: 50 }} >
            <Text style={{color: 'white', textAlign: "center"}} > {props.buttonText}</Text>

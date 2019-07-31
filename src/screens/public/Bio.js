@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
   },
 })
 
-// const mapStateToProps = state = {}
+const mapStateToProps = state = {}
 
 export default connect(null, {logIn})(Bio)

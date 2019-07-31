@@ -9,15 +9,6 @@ import {connect} from 'react-redux'
 const {width, height} = Dimensions.get("window")
 
 class Dashboard extends Component {
-
-  static navigationOptions = ({ navigation }) => ({
-    headerTitle: (
-      <View style={{ flex: 1, paddingHorizontal: 20 }}>
-        <Text style={{fontSize: 20}}>Dashboard</Text>
-      </View>
-    )
-  });
-
   state = {
     showBal: false
   }
@@ -53,42 +44,42 @@ class Dashboard extends Component {
           </TouchableOpacity>
         </View>
 
-        {/* <View style={[styles.row, {justifyContent: "space-around", alignItems: "center", paddingVertical: 20}]}>
-          <Item labelText="Bank Transfer" iconName="md-cash" onPress={() => alert('hi')}  />
-          <Item labelText="Shopping" iconName="md-timer" onPress={() => alert('hi')}  />
-          <Item labelText="Hotel Reservation" iconName="" onPress={() => alert('hi')}  />
-          <Item labelText="Save" iconName="md-lock" onPress={() => alert('hi')}  />
-        </View> */}
-
        </View>
        <ScrollView>
        <DashboardCard
        cardTitle="News Feed"
        iconName="md-cash"
-       cardText=" Get realtime news updates as they happen around the world"
-       buttonText="Come Here"
+       cardText=" Get real time news updates as they happen around the world"
+       buttonText="Read News"
        backgroundColor="rgba(209, 139, 209, 0.4)"
+       onPress={() => this.props.navigation.navigate("NewsFeed")}
        />
        <DashboardCard
        cardTitle="Airtime Recharge"
        iconName="md-cash"
        cardText=" Recharge your MTN, GLO, Airtel and 9mobile lines"
-       buttonText="Come Here"
+       buttonText="Recharge"
        backgroundColor="rgba(9, 39, 209, 0.4)"
+       onPress={() => this.props.navigation.navigate("Airtime")}
+
        />
        <DashboardCard
        cardTitle="Shopping Cart"
        iconName="md-cash"
        cardText="Buy your wares ranging from wears, shoes, foodstuffs etc and pay through the secured Paystack payment gateway "
-       buttonText="Come Here"
+       buttonText="Shop"
        backgroundColor="rgba(9, 139, 209, 0.3)"
+       onPress={() => this.props.navigation.navigate("ShoppingCart")}
+
        />
        <DashboardCard
        cardTitle="Others Services"
        iconName="md-power"
        cardText="Some proposed services coming soon "
-       buttonText="Come Here"
-       backgroundColor="rgba(61, 223, 47, 0.3)"
+       buttonText="Visit"
+       backgroundColor="rgba(228, 19, 165, 0.3)"
+       onPress={() => this.props.navigation.navigate("OtherServices")}
+
        />
        </ScrollView>
 

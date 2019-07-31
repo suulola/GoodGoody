@@ -28,8 +28,13 @@ import Verification from './src/screens/public/Verification';
 import SetPasscode from './src/screens/public/SetPasscode';
 import Bio from './src/screens/public/Bio';
 import {connect} from "react-redux"
-import UpdateBio from './src/screens/secure/UpdateBio';
+import Profile from './src/screens/secure/Profile';
 import { logOut } from './src/store/action/auth';
+import NewsFeed from './src/screens/secure/NewsFeed';
+import ShoppingCart from './src/screens/secure/ShoppingCart';
+import OtherServices from './src/screens/secure/OtherServices';
+import Airtime from './src/screens/secure/Airtime';
+
 
 class App extends Component {
   render() {
@@ -57,14 +62,18 @@ const DrawerStackGuest = createDrawerNavigator({
 
 
 const tabDashboard = createBottomTabNavigator({
-  Dashboard: Dashboard,
-  Profile: UpdateBio,
+  Dashboard,
+  Profile,
 //   Logout: (props) => {
 //   }
 })
 
 const DrawerStackUser = createDrawerNavigator({
-  Dashboard: createStackNavigator({ tabDashboard },{headerMode: "none"})
+  Dashboard: createStackNavigator({ tabDashboard },{headerMode: "none"}),
+  NewsFeed: createStackNavigator({NewsFeed}),
+  ShoppingCart: createStackNavigator({ShoppingCart}),
+  Airtime: createStackNavigator({Airtime}),
+  OtherServices: createStackNavigator({OtherServices}),
 }, {
  initialRouteName: 'Dashboard',
 })
