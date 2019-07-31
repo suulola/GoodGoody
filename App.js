@@ -61,10 +61,10 @@ const tabDashboard = createBottomTabNavigator({
   Profile: UpdateBio,
 //   Logout: (props) => {
 //   }
-// })
+})
 
 const DrawerStackUser = createDrawerNavigator({
-  Dashboard: createStackNavigator({ tabDashboard })
+  Dashboard: createStackNavigator({ tabDashboard },{headerMode: "none"})
 }, {
  initialRouteName: 'Dashboard',
 })

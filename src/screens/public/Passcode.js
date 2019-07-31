@@ -89,7 +89,7 @@ class Passcode extends Component {
            maxLength={1}
            secureTextEntry={true}
            onKeyPress={({nativeEvent: {key: keyValue}}) => {
-            if(keyValue === "Backspace"&& this.state.password_2 === "" ) {
+            if(keyValue === "Backspace" && this.state.password_2 === "" ) {
               this.refs.password_1.focus()
             }
           }}

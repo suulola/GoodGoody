@@ -5,7 +5,7 @@ import { COLOR } from '../helpers/helpers';
 
 const DashboardCard = props => {
   return (
-   <TouchableOpacity>
+   <TouchableOpacity style={{}} >
             <View style={[styles.row, {
        borderRadius: 15,
        flexDirection: "row",
@@ -13,11 +13,12 @@ const DashboardCard = props => {
        paddingVertical: 20,
        marginHorizontal: 10,
        marginVertical: 10,
+       height: 210,
        backgroundColor: props.backgroundColor }]}>
        <Icon name={props.iconName} size={30} style={{marginRight: 10}}  />
-       <View>
-         <Text style={{fontSize: 20}}>{props.cardTitle}</Text>
-         <Text style={{color: 'white', marginRight: 25 }} >{props.cardText}</Text>
+       <View style={{justifyContent: "space-around"}}>
+         <Text style={{fontSize: 20, fontFamily: "Roboto"}}>{props.cardTitle}</Text>
+         <Text style={{color: 'white', marginRight: 25, fontFamily: "san-serif-thin" }} >{props.cardText}</Text>
          <TouchableOpacity  style={{
            width: 150,
            backgroundColor: COLOR.buttonBackground, padding: 10, marginVertical: 10, borderRadius: 50 }} >

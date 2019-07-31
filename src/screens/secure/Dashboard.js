@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from
 import DashboardCard from "../../components/common/DashboardCard";
 import { COLOR } from '../../components/helpers/helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import {connect} from 'react-redux'
 
 
 const {width, height} = Dimensions.get("window")
@@ -22,6 +22,8 @@ class Dashboard extends Component {
     showBal: false
   }
   render() {
+    console.log(this.props)
+    const { firstName, email, phoneNumber} = this.props
     return (
         <View style={styles.container}>
         {/* topmost view start */}
@@ -29,7 +31,7 @@ class Dashboard extends Component {
           justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 5
           }]}>
           <View>
-            <Text>Home</Text>
+            <Text>Welcome  {firstName} </Text>
           </View>
           <View style={[styles.row, {width: 120, justifyContent: "space-around"}]}>
             <Icon name="md-person" size={30}  />
@@ -54,35 +56,40 @@ class Dashboard extends Component {
         {/* <View style={[styles.row, {justifyContent: "space-around", alignItems: "center", paddingVertical: 20}]}>
           <Item labelText="Bank Transfer" iconName="md-cash" onPress={() => alert('hi')}  />
           <Item labelText="Shopping" iconName="md-timer" onPress={() => alert('hi')}  />
-          <Item labelText="Hotel Reservation" iconName="md-power" onPress={() => alert('hi')}  />
+          <Item labelText="Hotel Reservation" iconName="" onPress={() => alert('hi')}  />
           <Item labelText="Save" iconName="md-lock" onPress={() => alert('hi')}  />
         </View> */}
 
        </View>
        <ScrollView>
        <DashboardCard
-       cardTitle="Title of the page"
+       cardTitle="News Feed"
        iconName="md-cash"
-       cardText="React Native gives mobile and web developers the power to Write your app once and easily deploy it to iOS and Android and the web. React Native apps compile into platform-specific code"
+       cardText=" Get realtime news updates as they happen around the world"
        buttonText="Come Here"
-       backgroundColor="rgba(209, 139, 209, 0.8)"
+       backgroundColor="rgba(209, 139, 209, 0.4)"
        />
        <DashboardCard
-       cardTitle="Title of the page"
+       cardTitle="Airtime Recharge"
        iconName="md-cash"
-       cardText="React Native gives mobile and web developers the power to Write your app once and easily deploy it to iOS and Android and the web. React Native apps compile into platform-specific code"
+       cardText=" Recharge your MTN, GLO, Airtel and 9mobile lines"
        buttonText="Come Here"
-       backgroundColor="rgba(9, 39, 209, 0.7)"
+       backgroundColor="rgba(9, 39, 209, 0.4)"
        />
        <DashboardCard
-       cardTitle="Title of the page"
+       cardTitle="Shopping Cart"
        iconName="md-cash"
-       cardText="React Native gives mobile and web developers the power to Write your app once and easily deploy it to iOS and Android and the web. React Native apps compile into platform-specific code"
+       cardText="Buy your wares ranging from wears, shoes, foodstuffs etc and pay through the secured Paystack payment gateway "
        buttonText="Come Here"
-       backgroundColor="rgba(9, 139, 209, 0.5)"
+       backgroundColor="rgba(9, 139, 209, 0.3)"
        />
-
-
+       <DashboardCard
+       cardTitle="Others Services"
+       iconName="md-power"
+       cardText="Some proposed services coming soon "
+       buttonText="Come Here"
+       backgroundColor="rgba(61, 223, 47, 0.3)"
+       />
        </ScrollView>
 
 
@@ -104,4 +111,12 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   }
 })
-export default Dashboard
+
+const mapStateToProps = state => {
+  return {
+    firstName: state.auth.firstName,
+    phoneNumber: state.auth.phoneNumber,
+    email: state.auth.email
+  }
+}
+export default connect(mapStateToProps)(Dashboard)

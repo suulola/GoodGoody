@@ -1,7 +1,11 @@
-import { LOG_IN, SIGN_OUT } from "../action/actionType";
+import { LOG_IN, SIGN_OUT, SET_USER_DETAIL } from "../action/actionType";
 
 const initStore = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  firstName: "",
+  phoneNumber: "",
+  email: "",
+  surname: ""
 }
 
 const authReducer = (state = initStore, action) => {
@@ -17,8 +21,15 @@ const authReducer = (state = initStore, action) => {
         ...state,
         isLoggedIn: false
       };
+    case SET_USER_DETAIL:
+      return {
+        ...state,
+        firstName: action.payload.firstName,
+        phoneNumber: action.payload.phoneNumber,
+        email: action.payload.email,
+        surname: action.payload.surname
+      }
     default: return state;
-
   }
 }
 

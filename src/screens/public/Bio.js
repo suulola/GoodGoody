@@ -26,19 +26,14 @@ class Bio extends Component {
       await AsyncStorage.setItem('password', `${details.pin}`)
       await AsyncStorage.setItem('phoneNumber', `${details.phoneNumber}`)
       await AsyncStorage.setItem('firstName', this.state.firstName)
+      await AsyncStorage.setItem('surname', this.state.surname)
       await AsyncStorage.setItem('email', this.state.email)
       this.props.logIn()
-
     } catch(e) {
       console.log(e)
       alert('Something went wrong')
     }
-
-
-
   }
-
-
 
   render() {
     const {details} = this.props.navigation.state.params
