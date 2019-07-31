@@ -15,10 +15,12 @@ const DashboardCard = props => {
        marginVertical: 10,
        backgroundColor: props.backgroundColor }]}>
        <Icon name={props.iconName} size={30} style={{marginRight: 10}}  />
-       <View style={{}} >
+       <View>
          <Text style={{fontSize: 20}}>{props.cardTitle}</Text>
          <Text style={{color: 'white', marginRight: 25 }} >{props.cardText}</Text>
-         <TouchableOpacity style={{backgroundColor: COLOR.buttonBackground, padding: 10, marginVertical: 10, borderRadius: 50 }} >
+         <TouchableOpacity  style={{
+           width: 150,
+           backgroundColor: COLOR.buttonBackground, padding: 10, marginVertical: 10, borderRadius: 50 }} >
            <Text style={{color: 'white', textAlign: "center"}} > {props.buttonText}</Text>
          </TouchableOpacity>
 

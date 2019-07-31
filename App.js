@@ -28,7 +28,8 @@ import Verification from './src/screens/public/Verification';
 import SetPasscode from './src/screens/public/SetPasscode';
 import Bio from './src/screens/public/Bio';
 import {connect} from "react-redux"
-
+import UpdateBio from './src/screens/secure/UpdateBio';
+import { logOut } from './src/store/action/auth';
 
 class App extends Component {
   render() {
@@ -53,8 +54,17 @@ const DrawerStackGuest = createDrawerNavigator({
   // contentComponent: DrawerNavigator
 })
 
+
+
+const tabDashboard = createBottomTabNavigator({
+  Dashboard: Dashboard,
+  Profile: UpdateBio,
+//   Logout: (props) => {
+//   }
+// })
+
 const DrawerStackUser = createDrawerNavigator({
-  Dashboard: createStackNavigator({ Dashboard})
+  Dashboard: createStackNavigator({ tabDashboard })
 }, {
  initialRouteName: 'Dashboard',
 })
@@ -83,4 +93,4 @@ return {
   isLoggedIn: state.auth.isLoggedIn
 } }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {logOut} )(App);

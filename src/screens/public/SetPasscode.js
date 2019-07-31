@@ -67,7 +67,7 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
            />
       </View>
        {/* 2 */}
@@ -81,7 +81,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_2 === "" ) {
+              this.refs.password_1.focus()
+            }
+          }}
            />
       </View>
          {/* 3 */}
@@ -95,7 +100,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_3 === "" ) {
+              this.refs.password_2.focus()
+            }
+          }}
            />
          </View>
          {/* 4 */}
@@ -109,7 +119,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_4 === "" ) {
+              this.refs.password_3.focus()
+            }
+          }}
            />
          </View>
 
@@ -130,7 +145,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+          onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.confirm_password_1 === "" ) {
+              this.refs.password_4.focus()
+            }
+          }}
            />
       </View>
        {/* 2 */}
@@ -144,7 +164,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+          onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.confirm_password_2 === "" ) {
+              this.refs.confirm_password_1.focus()
+            }
+          }}
            />
       </View>
          {/* 3 */}
@@ -158,7 +183,12 @@ console.log(details)
            keyboardType="numeric"
            style={styles.inputField}
            maxLength={1}
-           secureTextEntry={true}
+          //  secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.confirm_password_3 === "" ) {
+              this.refs.confirm_password_2.focus()
+            }
+          }}
            />
          </View>
          {/* 4 */}
@@ -174,6 +204,11 @@ console.log(details)
            style={styles.inputField}
            maxLength={1}
            secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.confirm_password_4 === "" ) {
+              this.refs.confirm_password_3.focus()
+            }
+          }}
            />
          </View>
 

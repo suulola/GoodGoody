@@ -89,7 +89,7 @@ class Passcode extends Component {
            maxLength={1}
            secureTextEntry={true}
            onKeyPress={({nativeEvent: {key: keyValue}}) => {
-            if(keyValue === "Backspace") {
+            if(keyValue === "Backspace"&& this.state.password_2 === "" ) {
               this.refs.password_1.focus()
             }
           }}
@@ -108,7 +108,7 @@ class Passcode extends Component {
            maxLength={1}
            secureTextEntry={true}
            onKeyPress={({nativeEvent: {key: keyValue}}) => {
-            if(keyValue === "Backspace") {
+            if(keyValue === "Backspace" && this.state.password_3 === "" ) {
               this.refs.password_2.focus()
             }
           }}
@@ -128,7 +128,7 @@ class Passcode extends Component {
            maxLength={1}
            secureTextEntry={true}
            onKeyPress={({nativeEvent: {key: keyValue}}) => {
-            if(keyValue === "Backspace") {
+            if(keyValue === "Backspace" && this.state.password_4 === "") {
               this.refs.password_3.focus()
             }
           }}
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     borderStyle: "dotted",
     borderColor: 'green',
     marginHorizontal: 10,
-    height: 40,
+    height: 50,
     justifyContent: "center",
     alignItems: "center"
   },
