@@ -4,6 +4,8 @@ import DashboardCard from "../../components/common/DashboardCard";
 import { COLOR } from '../../components/helpers/helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux'
+import { logOut } from '../../store/action/auth';
+
 
 
 const {width, height} = Dimensions.get("window")
@@ -36,7 +38,9 @@ class Dashboard extends Component {
             <TouchableOpacity>
             <Icon name="ios-information-circle-outline" size={30}  />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => this.props.logOut() }
+            >
             <Icon name="md-exit" size={30}  />
             </TouchableOpacity>
           </View>
@@ -126,4 +130,4 @@ const mapStateToProps = state => {
     email: state.auth.email
   }
 }
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps, {logOut})(Dashboard)

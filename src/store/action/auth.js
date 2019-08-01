@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SET_USER_DETAIL } from "./actionType";
+import { LOG_IN, SIGN_OUT, SET_USER_DETAIL } from "./actionType";
 
 export const logIn = () => dispatch => {
   dispatch({
@@ -7,7 +7,7 @@ export const logIn = () => dispatch => {
 }
 export const logOut = () => dispatch => {
   dispatch({
-    type: LOG_OUT,
+    type: SIGN_OUT,
   })
 }
 export const setUserDetails = (userDetails) => dispatch => {

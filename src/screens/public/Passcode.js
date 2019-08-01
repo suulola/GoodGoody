@@ -163,7 +163,7 @@ class Passcode extends Component {
 const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
-    top: height - 120,
+    top: height - 130,
     right: 0,
     left: 0,
     alignItems: "center",
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 5,
     padding: 10,
-    marginBottom: 10
+    // marginBottom: 20
   },
   submitText: {
     color: 'white',

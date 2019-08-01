@@ -16,7 +16,7 @@ class NewsFeed extends Component {
     headerTitle: (
       <View style={{ flex: 1, paddingHorizontal: 20, flexDirection: "row", alignItems: "center" }}>
         <TouchableOpacity>
-        <Icon name="md-arrow-back" size={30} style={{marginLeft: 40, marginRight: 40}} />
+        <Icon name="md-arrow-back" size={30} style={{marginLeft: 10, marginRight: 40}} />
         </TouchableOpacity>
         <Text style={{fontSize: 20, marginHorizontal: 10}}>News</Text>
       </View>
@@ -47,7 +47,7 @@ class NewsFeed extends Component {
   render() {
     let newsFeed
     this.state.articles.length === 0 ? (
-      newsFeed = <ActivityIndicator />
+      newsFeed = <ActivityIndicator size="large" color="rgb(38, 226, 13)" />
     ) : (
      newsFeed = this.state.articles.map((article, i) => (
        <TouchableOpacity key={i} onPress={() => this.props.navigation.navigate("DisplayNews", {
@@ -59,7 +59,9 @@ class NewsFeed extends Component {
             alignItems: "center",
             width: '90%',
             backgroundColor: "rgba(0, 0, 0, 0.2)",
-            marginVertical: 20
+            marginVertical: 20,
+            borderTopEndRadius: 5,
+            borderBottomRightRadius: 5
             }}>
          <View style={{ width: "40%" }}>
          <Image
