@@ -35,14 +35,12 @@ class Passcode extends Component {
       await AsyncStorage.multiRemove(keys)
       this.props.navigation.navigate("Login")
     }catch(error) {
-      console.log(error)
+      alert(error)
     }
-
-
   }
 
   resetPIN = () => {
-
+    alert("Working on this")
   }
 
   render() {
@@ -165,11 +163,10 @@ class Passcode extends Component {
 const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
-    top: height - 110,
+    top: height - 120,
     right: 0,
     left: 0,
     alignItems: "center",
-
   },
   container: {
     flex: 1,
@@ -216,7 +213,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.buttonBackground,
     width: '80%',
     borderRadius: 5,
-    padding: 10
+    padding: 10,
+    marginBottom: 10
   },
   submitText: {
     color: 'white',

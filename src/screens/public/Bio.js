@@ -5,6 +5,8 @@ import { COLOR } from '../../components/helpers/helpers';
 import { logIn } from '../../store/action/auth';
 import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
+import { setUserDetails } from '../../store/action/auth';
+
 
 class Bio extends Component {
   state={
@@ -23,11 +25,19 @@ class Bio extends Component {
       return;
     }
     try {
+      // const {firstName, surname, email} = this.state
       await AsyncStorage.setItem('password', `${details.pin}`)
       await AsyncStorage.setItem('phoneNumber', `${details.phoneNumber}`)
       await AsyncStorage.setItem('firstName', this.state.firstName)
       await AsyncStorage.setItem('surname', this.state.surname)
       await AsyncStorage.setItem('email', this.state.email)
+      const userDetails = {
+        email: this.state.email,
+        firstName: this.state.firstName,
+        surname: this.state.surname,
+        phoneNumber: +this.state.phoneNumber
+      }
+     await this.props.setUserDetails(userDetails)
       this.props.logIn()
     } catch(e) {
       console.log(e)
@@ -123,6 +133,6 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = state = {}
+// const mapStateToProps = state = {}
 
-export default connect(null, {logIn})(Bio)
+export default connect(null, {setUserDetails, logIn})(Bio)

@@ -22,19 +22,36 @@ class Dashboard extends Component {
           justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 5
           }]}>
           <View>
-            <Text>Welcome  {firstName} </Text>
+            <Text style={{
+              fontWeight: "normal",
+              fontSize: 15,
+              fontFamily: "monospace"
+
+              }}>Welcome {firstName} </Text>
           </View>
-          <View style={[styles.row, {width: 120, justifyContent: "space-around"}]}>
-            <Icon name="md-person" size={30}  />
-            <Icon name="md-notifications-outline" size={30}  />
-            <Icon name="md-settings" size={30}  />
+          <View style={[styles.row, {width: 170, justifyContent: "space-around", paddingVertical: 10}]}>
+            <TouchableOpacity >
+            <Icon name="md-contact" size={30}  />
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <Icon name="ios-information-circle-outline" size={30}  />
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <Icon name="md-exit" size={30}  />
+            </TouchableOpacity>
           </View>
         </View>
         {/* topmost view end */}
-        <View style={{width: '100%', height: 1, borderWidth: 0.5, borderColor: "#bdbdbd7a", marginVertical: 5}} />
+        <View style={{width: '100%', height: 1, borderWidth: 1, borderColor: "#bdbdbd7a"}} />
 
-       <View style={{backgroundColor: "white", width: '100%'}}>
-       <View style={[styles.row, {justifyContent: "space-between", paddingHorizontal: 5}]}>
+       <View style={[styles.row, {
+         backgroundColor: "white",
+         width: '100%',
+         justifyContent: "space-between",
+         paddingHorizontal: 5,
+         paddingVertical: 5
+
+         }]}>
           <Text>Total Balance: {this.state.showBal ? 'N50' : 'XX'}
           </Text>
           <TouchableOpacity onPress={ () => this.setState({showBal: !this.state.showBal}) }>
@@ -44,40 +61,39 @@ class Dashboard extends Component {
           </TouchableOpacity>
         </View>
 
-       </View>
        <ScrollView>
        <DashboardCard
        cardTitle="News Feed"
-       iconName="md-cash"
+       iconName="md-bulb"
        cardText=" Get real time news updates as they happen around the world"
        buttonText="Read News"
-       backgroundColor="rgba(209, 139, 209, 0.4)"
+       backgroundColor="rgba(209, 139, 209, 0.9)"
        onPress={() => this.props.navigation.navigate("NewsFeed")}
        />
        <DashboardCard
        cardTitle="Airtime Recharge"
-       iconName="md-cash"
+       iconName="md-card"
        cardText=" Recharge your MTN, GLO, Airtel and 9mobile lines"
        buttonText="Recharge"
-       backgroundColor="rgba(9, 39, 209, 0.4)"
+       backgroundColor="rgba(9, 39, 209, 0.5)"
        onPress={() => this.props.navigation.navigate("Airtime")}
 
        />
        <DashboardCard
        cardTitle="Shopping Cart"
-       iconName="md-cash"
+       iconName="md-cart"
        cardText="Buy your wares ranging from wears, shoes, foodstuffs etc and pay through the secured Paystack payment gateway "
        buttonText="Shop"
-       backgroundColor="rgba(9, 139, 209, 0.3)"
+       backgroundColor="rgba(9, 139, 209, 0.5)"
        onPress={() => this.props.navigation.navigate("ShoppingCart")}
 
        />
        <DashboardCard
        cardTitle="Others Services"
-       iconName="md-power"
+       iconName="logo-buffer"
        cardText="Some proposed services coming soon "
        buttonText="Visit"
-       backgroundColor="rgba(228, 19, 165, 0.3)"
+       backgroundColor="rgba(228, 19, 165, 0.7)"
        onPress={() => this.props.navigation.navigate("OtherServices")}
 
        />

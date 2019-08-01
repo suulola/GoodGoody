@@ -15,7 +15,10 @@ const DashboardCard = props => {
        marginVertical: 10,
        height: 210,
        backgroundColor: props.backgroundColor }]}>
-       <Icon name={props.iconName} size={30} style={{marginRight: 10}}  />
+         <View style={{justifyContent: "center", alignItems: "center", marginHorizontal: 10}}>
+           <Icon name={props.iconName} size={55} style={{marginRight: 10}}  />
+         </View>
+
        <View style={{justifyContent: "space-around"}}>
          <Text style={{fontSize: 20, fontFamily: "Roboto"}}>{props.cardTitle}</Text>
          <Text style={{color: 'white', marginRight: 25, fontFamily: "san-serif-thin" }} >{props.cardText}</Text>

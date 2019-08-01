@@ -34,6 +34,9 @@ import NewsFeed from './src/screens/secure/NewsFeed';
 import ShoppingCart from './src/screens/secure/ShoppingCart';
 import OtherServices from './src/screens/secure/OtherServices';
 import Airtime from './src/screens/secure/Airtime';
+import TransactionHistory from './src/screens/secure/TransactionHistory';
+import Wallet from './src/screens/secure/Wallet';
+import DisplayNews from './src/screens/secure/DisplayNews';
 
 
 class App extends Component {
@@ -64,13 +67,13 @@ const DrawerStackGuest = createDrawerNavigator({
 const tabDashboard = createBottomTabNavigator({
   Dashboard,
   Profile,
-//   Logout: (props) => {
-//   }
+  TransactionHistory,
+  Wallet
 })
 
 const DrawerStackUser = createDrawerNavigator({
   Dashboard: createStackNavigator({ tabDashboard },{headerMode: "none"}),
-  NewsFeed: createStackNavigator({NewsFeed}),
+  NewsFeed: createStackNavigator({NewsFeed, DisplayNews}),
   ShoppingCart: createStackNavigator({ShoppingCart}),
   Airtime: createStackNavigator({Airtime}),
   OtherServices: createStackNavigator({OtherServices}),
