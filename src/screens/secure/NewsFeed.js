@@ -15,8 +15,8 @@ class NewsFeed extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: (
       <View style={{ flex: 1, paddingHorizontal: 20, flexDirection: "row", alignItems: "center" }}>
-        <TouchableOpacity>
-        <Icon name="md-arrow-back" size={30} style={{marginLeft: 10, marginRight: 40}} />
+        <TouchableOpacity onPress={ () => navigation.navigate("tabDashboard") }>
+        <Icon name="md-arrow-back" size={30} style={{marginLeft: 10, marginRight: 10}} />
         </TouchableOpacity>
         <Text style={{fontSize: 20, marginHorizontal: 10}}>News</Text>
       </View>
@@ -57,8 +57,8 @@ class NewsFeed extends Component {
             flexDirection: 'row',
             justifyContent: "center",
             alignItems: "center",
-            width: '90%',
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            width: '95%',
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
             marginVertical: 20,
             borderTopEndRadius: 5,
             borderBottomRightRadius: 5
@@ -66,13 +66,16 @@ class NewsFeed extends Component {
          <View style={{ width: "40%" }}>
          <Image
           source={{uri: article.urlToImage}}
-          style={{width: 200, height: 200 }}
+          style={{
+            width: '100%',
+            height: 200,
+            resizeMode: "cover"
+            }}
+
           />
          </View>
-         <View style={{ width: '60%' }} >
+         <View style={{ width: '60%', padding: 30 }} >
          <Text> {article.title}</Text>
-         <Text> Source: {article.source.name}</Text>
-
          </View>
 
         </View>

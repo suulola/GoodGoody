@@ -5,7 +5,10 @@ const initStore = {
   firstName: "",
   phoneNumber: "",
   email: "",
-  surname: ""
+  surname: "",
+  middleName: "",
+  facebook: "",
+  twitter: ""
 }
 
 const authReducer = (state = initStore, action) => {

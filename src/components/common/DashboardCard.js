@@ -5,42 +5,65 @@ import { COLOR } from '../helpers/helpers';
 
 const DashboardCard = props => {
   return (
-   <TouchableOpacity style={{}} >
-            <View style={[styles.row, {
-       borderRadius: 15,
-       flexDirection: "row",
-       paddingHorizontal: 20,
-       paddingVertical: 20,
-       marginHorizontal: 10,
-       marginVertical: 10,
-       height: 210,
-       backgroundColor: props.backgroundColor }]}>
-         <View style={{justifyContent: "center", alignItems: "center", marginHorizontal: 10}}>
-           <Icon name={props.iconName} size={55} style={{marginRight: 10}}  />
+   <TouchableOpacity
+   onPress={props.onPress}
+   >
+   <View style={styles.card}>
+         <View style={styles.wrapper}>
+           <Icon name={props.iconName} size={55} style={styles.icon}  />
          </View>
 
        <View style={{justifyContent: "space-around"}}>
-         <Text style={{fontSize: 20, fontFamily: "Roboto"}}>{props.cardTitle}</Text>
-         <Text style={{color: 'white', marginRight: 25, fontFamily: "san-serif-thin" }} >{props.cardText}</Text>
-         <TouchableOpacity
-         onPress={props.onPress}
-         style={{
-           width: 150,
-           backgroundColor: COLOR.buttonBackground, padding: 10, marginVertical: 10, borderRadius: 50 }} >
-           <Text style={{color: 'white', textAlign: "center"}} > {props.buttonText}</Text>
-         </TouchableOpacity>
-
+         <Text style={styles.cardTitle}>{props.cardTitle}</Text>
+         <Text style={styles.cardText} >{props.cardText}</Text>
        </View>
-
         </View>
    </TouchableOpacity>
   );
 };
 
 const styles = {
-  row: {
-    flexDirection: "row"
-
+  card: {
+    borderRadius: 15,
+    flexDirection: "row",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    height: 100,
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 8,
+    elevation: 10,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 10,
+    marginBottom: 20,
+    backgroundColor: "rgb(250, 250, 250)"
+  },
+  icon: {
+    marginRight: 10
+  },
+  cardTitle: {
+    fontSize: 15,
+    fontFamily: "Roboto",
+    color: "rgba(216, 49, 49, 0.7)"
+  },
+  cardText: {
+    color: ' rgb(94, 97, 99)',
+    marginRight: 30,
+    paddingRight: 10,
+    fontFamily: "san-serif-thin",
+    marginVertical: 10,
+    fontSize: 11
+  },
+  wrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 10
   }
 }
 

@@ -32,7 +32,8 @@ class Dashboard extends Component {
               }}>Welcome {firstName} </Text>
           </View>
           <View style={[styles.row, {width: 170, justifyContent: "space-around", paddingVertical: 10}]}>
-            <TouchableOpacity >
+            <TouchableOpacity
+            onPress={ () => this.props.navigation.navigate("Profile")  } >
             <Icon name="md-contact" size={30}  />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -70,25 +71,19 @@ class Dashboard extends Component {
        cardTitle="News Feed"
        iconName="md-bulb"
        cardText=" Get real time news updates as they happen around the world"
-       buttonText="Read News"
-       backgroundColor="rgba(209, 139, 209, 0.9)"
        onPress={() => this.props.navigation.navigate("NewsFeed")}
        />
        <DashboardCard
        cardTitle="Airtime Recharge"
        iconName="md-card"
        cardText=" Recharge your MTN, GLO, Airtel and 9mobile lines"
-       buttonText="Recharge"
-       backgroundColor="rgba(9, 39, 209, 0.5)"
        onPress={() => this.props.navigation.navigate("Airtime")}
 
        />
        <DashboardCard
        cardTitle="Shopping Cart"
        iconName="md-cart"
-       cardText="Buy your wares ranging from wears, shoes, foodstuffs etc and pay through the secured Paystack payment gateway "
-       buttonText="Shop"
-       backgroundColor="rgba(9, 139, 209, 0.5)"
+       cardText="Buy your wares"
        onPress={() => this.props.navigation.navigate("ShoppingCart")}
 
        />
@@ -96,8 +91,6 @@ class Dashboard extends Component {
        cardTitle="Others Services"
        iconName="logo-buffer"
        cardText="Some proposed services coming soon "
-       buttonText="Visit"
-       backgroundColor="rgba(228, 19, 165, 0.7)"
        onPress={() => this.props.navigation.navigate("OtherServices")}
 
        />

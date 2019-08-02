@@ -17,6 +17,7 @@ import {
   createDrawerNavigator,
   createBottomTabNavigator
 } from 'react-navigation'
+import Icon from "react-native-vector-icons/Ionicons";
 
 import SignUp from './src/screens/public/SignUp';
 import Dashboard from './src/screens/secure/Dashboard';
@@ -29,6 +30,7 @@ import SetPasscode from './src/screens/public/SetPasscode';
 import Bio from './src/screens/public/Bio';
 import {connect} from "react-redux"
 import Profile from './src/screens/secure/Profile';
+import UpdateProfile from './src/screens/secure/UpdateProfile';
 import { logOut } from './src/store/action/auth';
 import NewsFeed from './src/screens/secure/NewsFeed';
 import ShoppingCart from './src/screens/secure/ShoppingCart';
@@ -63,16 +65,38 @@ const DrawerStackGuest = createDrawerNavigator({
 })
 
 
-
 const tabDashboard = createBottomTabNavigator({
-  Dashboard,
-  Profile,
-  TransactionHistory,
-  Wallet
+  Dashboard: {
+    screen: Dashboard,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="ios-home" size={25} color="rgba(216, 49, 49, 0.5)"  />
+    }
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="md-contact" size={25} color="rgba(216, 49, 49, 0.5)"  />
+    }
+  },
+  TransactionHistory: {
+    screen: TransactionHistory,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="ios-calendar" size={25} color="rgba(216, 49, 49, 0.5)"  />
+    }
+  },
+  Wallet: {
+    screen: Wallet,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="md-lock" size={25} color="rgba(216, 49, 49, 0.5)"  />
+    }
+  }
+}, {
+  initialRouteName: "Dashboard"
 })
 
 const DrawerStackUser = createDrawerNavigator({
   Dashboard: createStackNavigator({ tabDashboard },{headerMode: "none"}),
+  UpdateProfile: createStackNavigator({ UpdateProfile }),
   NewsFeed: createStackNavigator({NewsFeed, DisplayNews}),
   ShoppingCart: createStackNavigator({ShoppingCart}),
   Airtime: createStackNavigator({Airtime}),

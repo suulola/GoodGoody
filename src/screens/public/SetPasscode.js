@@ -43,7 +43,7 @@ class SetPasscode extends Component {
           details: details
         })
       }else {
-        alert("now working yet")
+        alert("Password do not match")
       }
 
 
