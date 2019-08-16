@@ -15,7 +15,6 @@ class Dashboard extends Component {
     showBal: false
   }
   render() {
-    console.log(this.props)
     const { firstName, email, phoneNumber} = this.props
     return (
         <View style={styles.container}>
@@ -26,9 +25,9 @@ class Dashboard extends Component {
           <View>
             <Text style={{
               fontWeight: "normal",
+              marginLeft: 5,
               fontSize: 15,
-              fontFamily: "monospace"
-
+              // fontFamily: "monospace"
               }}>Welcome {firstName} </Text>
           </View>
           <View style={[styles.row, {width: 170, justifyContent: "space-around", paddingVertical: 10}]}>
@@ -54,10 +53,9 @@ class Dashboard extends Component {
          width: '100%',
          justifyContent: "space-between",
          paddingHorizontal: 5,
-         paddingVertical: 5
-
+         paddingVertical: 5,
          }]}>
-          <Text>Total Balance: {this.state.showBal ? 'N50' : 'XX'}
+          <Text>Total Balance: {this.state.showBal ? 'N0' : 'XX'}
           </Text>
           <TouchableOpacity onPress={ () => this.setState({showBal: !this.state.showBal}) }>
           <Text>
@@ -81,11 +79,17 @@ class Dashboard extends Component {
 
        />
        <DashboardCard
+       cardTitle="Image to Text Converter"
+       iconName="logo-buffer"
+       cardText="Convert your images with text to document files"
+       onPress={() => this.props.navigation.navigate("ImageToText")}
+       />
+       <DashboardCard
        cardTitle="Shopping Cart"
        iconName="md-cart"
        cardText="Buy your wares"
-       onPress={() => this.props.navigation.navigate("ShoppingCart")}
-
+      //  onPress={() => this.props.navigation.navigate("ShoppingCart")}
+       onPress={() => alert(" Working on it ")}
        />
        <DashboardCard
        cardTitle="Others Services"
@@ -107,7 +111,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 5,
-    // paddingHorizontal: 5,
     backgroundColor: COLOR.themeBackground   // "#8d8d8d7a"
 
   },

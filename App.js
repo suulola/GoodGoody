@@ -39,6 +39,8 @@ import Airtime from './src/screens/secure/Airtime';
 import TransactionHistory from './src/screens/secure/TransactionHistory';
 import Wallet from './src/screens/secure/Wallet';
 import DisplayNews from './src/screens/secure/DisplayNews';
+import ConfirmAirtimePurchase from './src/screens/secure/ConfirmAirtimePurchase';
+import ImageToText from './src/screens/secure/ImageToText';
 
 
 class App extends Component {
@@ -49,11 +51,7 @@ class App extends Component {
   }
 }
 
-// const App = (props) => {
-//   return (
-// <AppContainerForGuest />89
-//   );
-// };
+
 
 const DrawerStackGuest = createDrawerNavigator({
   Home: createStackNavigator({ Home, Login, Passcode }, {headerMode: "none"}),
@@ -78,7 +76,7 @@ const tabDashboard = createBottomTabNavigator({
       tabBarIcon: () => <Icon name="md-contact" size={25} color="rgba(216, 49, 49, 0.5)"  />
     }
   },
-  TransactionHistory: {
+  History: {
     screen: TransactionHistory,
     navigationOptions: {
       tabBarIcon: () => <Icon name="ios-calendar" size={25} color="rgba(216, 49, 49, 0.5)"  />
@@ -99,8 +97,9 @@ const DrawerStackUser = createDrawerNavigator({
   UpdateProfile: createStackNavigator({ UpdateProfile }),
   NewsFeed: createStackNavigator({NewsFeed, DisplayNews}),
   ShoppingCart: createStackNavigator({ShoppingCart}),
-  Airtime: createStackNavigator({Airtime}),
+  Airtime: createStackNavigator({Airtime, ConfirmAirtimePurchase}),
   OtherServices: createStackNavigator({OtherServices}),
+  ImageToText: createStackNavigator({ImageToText}),
 }, {
  initialRouteName: 'Dashboard',
 })

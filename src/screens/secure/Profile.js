@@ -62,7 +62,7 @@ style={{color: "rgba(216, 49, 49, 0.5)", fontSize: 13, marginLeft: 40}}>Edit Pro
  </View>
 
 
- <View style={[styles.card, {marginTop: 20}]}>
+ {/* <View style={[styles.card, {marginTop: 20}]}>
    <View style={styles.row}>
      <Icon
      name="md-call"
@@ -82,7 +82,7 @@ style={{color: "rgba(216, 49, 49, 0.5)", fontSize: 13, marginLeft: 40}}>Edit Pro
 
    </View>
 
- </View>
+ </View> */}
 
 </View>
   </ScrollView>
