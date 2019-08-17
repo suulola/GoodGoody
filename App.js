@@ -18,6 +18,7 @@ import {
   createBottomTabNavigator
 } from 'react-navigation'
 import Icon from "react-native-vector-icons/Ionicons";
+import {connect} from "react-redux"
 
 import SignUp from './src/screens/public/SignUp';
 import Dashboard from './src/screens/secure/Dashboard';
@@ -28,10 +29,8 @@ import DrawerNavigator from './src/screens/public/DrawerNavigator';
 import Verification from './src/screens/public/Verification';
 import SetPasscode from './src/screens/public/SetPasscode';
 import Bio from './src/screens/public/Bio';
-import {connect} from "react-redux"
 import Profile from './src/screens/secure/Profile';
 import UpdateProfile from './src/screens/secure/UpdateProfile';
-import { logOut } from './src/store/action/auth';
 import NewsFeed from './src/screens/secure/NewsFeed';
 import ShoppingCart from './src/screens/secure/ShoppingCart';
 import OtherServices from './src/screens/secure/OtherServices';
@@ -42,6 +41,7 @@ import DisplayNews from './src/screens/secure/DisplayNews';
 import ConfirmAirtimePurchase from './src/screens/secure/ConfirmAirtimePurchase';
 import ImageToText from './src/screens/secure/ImageToText';
 
+import { logOut } from './src/store/action/auth';
 
 class App extends Component {
   render() {
@@ -50,8 +50,6 @@ class App extends Component {
     )
   }
 }
-
-
 
 const DrawerStackGuest = createDrawerNavigator({
   Home: createStackNavigator({ Home, Login, Passcode }, {headerMode: "none"}),
