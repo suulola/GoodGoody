@@ -4,12 +4,14 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from "react-native-image-picker";
 import { COLOR } from '../../components/helpers/helpers';
-// import RNTextDetector from "react-native-text-detector"
+import Ocr from "react-native-tesseract-ocr";
+
 
 const {height, width} = Dimensions.get("window")
 
@@ -18,6 +20,7 @@ const ButtonWithLabel = (props) => (
   style={{
     backgroundColor: COLOR.buttonBackground,
     width: 100,
+    marginTop: 10,
     paddingVertical: 10,
     marginHorizontal: 10,
     borderRadius: 10
@@ -48,52 +51,68 @@ export class ImageToText extends Component {
   });
 
   state = {
-    pickedImage: null
+    pickedImage: null,
+    text: ""
+  }
+
+
+
+  analyzeImage = async (imgPath = this.state.pickedImage.uri) => {
+    console.log(imgPath)
+    const tessOptions = {
+      whitelist: null,
+      blacklist: null
+    };
+    //to detect text
+    try {
+      console.log('Ocr is', Ocr)
+    const processImage = await Ocr.recognize(imgPath, "LANG_ENGLISH", tessOptions)
+    console.log(processImage)
+    this.setState({ text: processImage })
+
+    } catch (error) {
+      console.log(error)
+      this.setState({ text: "Error extracting the image" })
+    }
   }
 
   pickImageHandler = () => {
+
     ImagePicker.showImagePicker({
-      title:"Pick an image"
+      title:"Select image Boss"
     }, res => {
-      this.setState({pickedImage: {uri: res.uri}  })
+      if(res.didCancel) {
+        alert("No image selected")
+      } else if(res.error) {
+        alert('Error uploading image. Please try again later')
+      } else {
+        this.setState({pickedImage: {uri: res.uri}  })
+      }
+      console.log(res)
+
     })
   }
 
-  analyzeImage = async () => {
-    // to detect text
-    // try {
-    //   const visionResp = await RNTextDetector.detectFromUri(this.state.pickedImage)
-    //   console.log(visionResp)
-
-    // } catch (error) {
-    //   console.log(error)
-    //   console.log(error.message)
-    // }
-
-  }
-
-
-
-
-
-
-
-
-
   render() {
     return (
-      <View>
-        <Text> Coming Soon </Text>
+      <ScrollView>
+        <View>
         {this.state.pickedImage !== null && (
           <View  style={{
-            marginHorizontal: 30,
-            marginVertical: 30
+            marginHorizontal: 10,
+            // borderWidth: 1,
+            // borderColor:"red",
+            marginVertical: 10
           }} >
             <Image
+            resizeMode="contain"
+
+
           source={this.state.pickedImage}
           style={{
             width: "100%",
-            height: 300
+            height: 300,
+
           }}
 
           />
@@ -111,14 +130,30 @@ export class ImageToText extends Component {
             text="Pick Image"
             onPress={this.pickImageHandler}
             />
-     { this.state.pickedImage !== null &&    <ButtonWithLabel
+     { this.state.pickedImage !== null &&
+     <ButtonWithLabel
             text="Analyze Image"
             onPress={this.analyzeImage}
             />}
           </View>
 
       </View>
-    )
+      <Text
+      style={{
+        fontWeight: 'bold',
+        fontSize: 16,
+        textAlign:"center",
+        marginTop: 20,
+        marginBottom: 5,
+      }}
+      >Displayed Text</Text>
+      <Text
+      style={{
+        paddingHorizontal: 10
+      }}
+      >{this.state.text}</Text>
+      </ScrollView>
+      )
   }
 }
 

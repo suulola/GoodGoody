@@ -197,6 +197,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-tesseract-ocr')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-image-picker')
     implementation fileTree(dir: "libs", include: ["*.jar"])

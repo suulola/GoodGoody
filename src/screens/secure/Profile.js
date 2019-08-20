@@ -13,7 +13,11 @@ class Profile extends Component {
     return (
  <ScrollView>
 <View style={styles.container}>
-<Text style={[styles.text, {textAlign: "center", fontSize: 20, marginBottom:5}]}>Profile Information</Text>
+<Text style={[styles.text, {
+  textAlign: "center",
+  fontSize: 20,
+  marginBottom:5
+  }]}>Profile Information</Text>
 <Gravatar options={{
    email: email ,
    parameters: { "size": "200", "d": "mm" },
