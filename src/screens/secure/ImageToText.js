@@ -19,7 +19,7 @@ const ButtonWithLabel = (props) => (
   <TouchableOpacity
   style={{
     backgroundColor: COLOR.buttonBackground,
-    width: 100,
+    width: 140,
     marginTop: 10,
     paddingVertical: 10,
     marginHorizontal: 10,
@@ -52,23 +52,26 @@ export class ImageToText extends Component {
 
   state = {
     pickedImage: null,
-    text: ""
+    text: "",
+    path: "",
+    analyzeButton: "Analyze Image"
   }
 
 
 
-  analyzeImage = async (imgPath = this.state.pickedImage.uri) => {
-    console.log(imgPath)
+  analyzeImage = async (imgPath = this.state.path) => {
     const tessOptions = {
       whitelist: null,
       blacklist: null
     };
     //to detect text
     try {
-      console.log('Ocr is', Ocr)
-    const processImage = await Ocr.recognize(imgPath, "LANG_ENGLISH", tessOptions)
-    console.log(processImage)
-    this.setState({ text: processImage })
+      this.setState({analyzeButton: "Processing. . . "})
+    const processImage = await Ocr.recognize(this.state.path, "LANG_ENGLISH", tessOptions)
+    this.setState({
+      text: processImage,
+      analyzeButton: "Done"
+     })
 
     } catch (error) {
       console.log(error)
@@ -86,23 +89,39 @@ export class ImageToText extends Component {
       } else if(res.error) {
         alert('Error uploading image. Please try again later')
       } else {
-        this.setState({pickedImage: {uri: res.uri}  })
+        this.setState({
+          pickedImage: {uri: res.uri},
+          analyzeButton: "Analyze Image",
+          path: res.path
+        })
       }
-      console.log(res)
 
     })
   }
 
   render() {
     return (
-      <ScrollView>
-        <View>
+      <View
+      style={{
+        flex: 1
+      }}
+      >
+        <ScrollView
+        contentContainerStyle={{
+          minHeight: "100%"
+        }}
+        >
+        <View  style={{
+          // alignItems:"center",
+          justifyContent:"center",
+          flex: 1,
+          // borderWidth: 1,
+        }} >
         {this.state.pickedImage !== null && (
           <View  style={{
             marginHorizontal: 10,
-            // borderWidth: 1,
-            // borderColor:"red",
-            marginVertical: 10
+            marginVertical: 10,
+            // minHeight: 300
           }} >
             <Image
             resizeMode="contain"
@@ -123,7 +142,8 @@ export class ImageToText extends Component {
           <View
           style={{
             flexDirection:"row",
-            justifyContent:"space-around"
+            justifyContent:"space-around",
+            alignItems:"center"
           }}
           >
             <ButtonWithLabel
@@ -132,13 +152,13 @@ export class ImageToText extends Component {
             />
      { this.state.pickedImage !== null &&
      <ButtonWithLabel
-            text="Analyze Image"
+            text={this.state.analyzeButton}
             onPress={this.analyzeImage}
             />}
           </View>
 
       </View>
-      <Text
+    { this.state.text !== "" &&  <Text
       style={{
         fontWeight: 'bold',
         fontSize: 16,
@@ -146,13 +166,14 @@ export class ImageToText extends Component {
         marginTop: 20,
         marginBottom: 5,
       }}
-      >Displayed Text</Text>
+      >Extracted Text</Text>}
       <Text
       style={{
         paddingHorizontal: 10
       }}
       >{this.state.text}</Text>
       </ScrollView>
+      </View>
       )
   }
 }
