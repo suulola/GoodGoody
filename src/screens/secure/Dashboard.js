@@ -11,6 +11,9 @@ import { logOut } from '../../store/action/auth';
 const {width, height} = Dimensions.get("window")
 
 class Dashboard extends Component {
+  static navigationOptions = {
+    header: null,
+  };
   state = {
     showBal: false
   }
@@ -80,22 +83,28 @@ class Dashboard extends Component {
        />
        <DashboardCard
        cardTitle="Image to Text Converter"
-       iconName="logo-buffer"
+       iconName="md-images"
        cardText="Convert your images with text to document files"
        onPress={() => this.props.navigation.navigate("ImageToText")}
        />
        <DashboardCard
-       cardTitle="Shopping Cart"
-       iconName="md-cart"
-       cardText="Buy your wares"
-      //  onPress={() => this.props.navigation.navigate("ShoppingCart")}
-       onPress={() => alert(" Working on it ")}
+       cardTitle="Tetris Game"
+       iconName="logo-xbox"
+       cardText="Relex. Learn in diffuse mode."
+       onPress={() => this.props.navigation.navigate("TetrisGame")}
+       />
+       <DashboardCard
+       cardTitle="Planner"
+       iconName="md-globe"
+       cardText="Relex. Learn in diffuse mode."
+       onPress={() => this.props.navigation.navigate("Planner")}
        />
        <DashboardCard
        cardTitle="Others Services"
        iconName="logo-buffer"
        cardText="Some proposed services coming soon "
-       onPress={() => this.props.navigation.navigate("OtherServices")}
+      //  onPress={() => this.props.navigation.navigate("OtherServices")}             //  onPress={() => alert(" Working on it ")}
+       onPress={() => alert(" Working on it ")}
 
        />
        </ScrollView>

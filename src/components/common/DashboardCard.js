@@ -14,7 +14,7 @@ const DashboardCard = props => {
          </View>
 
        <View style={{justifyContent: "space-around"}}>
-         <Text style={styles.cardTitle}>{props.cardTitle}</Text>
+         <Text style={[styles.cardTitle, props.plan && { color: "rgba(34, 131, 211, 0.57)" }]}>{props.cardTitle}</Text>
          <Text style={styles.cardText} >{props.cardText}</Text>
        </View>
         </View>

@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
+  TextInput
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from "react-native-image-picker";
@@ -158,7 +159,13 @@ export class ImageToText extends Component {
           </View>
 
       </View>
-    { this.state.text !== "" &&  <Text
+    { this.state.text !== "" &&
+    <View style={{
+      flex: 1,
+      marginHorizontal: 10,
+      marginBottom: 20
+    }} >
+    <Text
       style={{
         fontWeight: 'bold',
         fontSize: 16,
@@ -166,12 +173,23 @@ export class ImageToText extends Component {
         marginTop: 20,
         marginBottom: 5,
       }}
-      >Extracted Text</Text>}
-      <Text
+      >Extracted Text</Text>
+      <TextInput
+      multiline={true}
+      numberOfLines={10}
       style={{
-        paddingHorizontal: 10
+        marginHorizontal: 10,
+        borderWidth: 0.5,
+        borderRadius: 10,
+        textAlign:"center",
+        borderColor: "#9e9e9e",
+
       }}
-      >{this.state.text}</Text>
+      value={this.state.text}
+      onChangeText={ (text) => this.setState({text}) }
+      />
+      </View>
+      }
       </ScrollView>
       </View>
       )
