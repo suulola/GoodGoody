@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, Linking } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, Linking, Dimensions } from 'react-native'
 import { COLOR, URL } from '../../components/helpers/helpers';
 import { logIn } from '../../store/action/auth';
 import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
+
+const {height} = Dimensions.get("window")
 
 class Passcode extends Component {
   state = {
@@ -33,14 +35,12 @@ class Passcode extends Component {
       await AsyncStorage.multiRemove(keys)
       this.props.navigation.navigate("Login")
     }catch(error) {
-      console.log(error)
+      alert(error)
     }
-
-
   }
 
   resetPIN = () => {
-
+    alert("Working on this")
   }
 
   render() {
@@ -70,6 +70,7 @@ class Passcode extends Component {
            style={styles.inputField}
            maxLength={1}
            secureTextEntry={true}
+
            />
       </View>
 
@@ -85,6 +86,11 @@ class Passcode extends Component {
            style={styles.inputField}
            maxLength={1}
            secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_2 === "" ) {
+              this.refs.password_1.focus()
+            }
+          }}
            />
       </View>
          {/* 3 */}
@@ -99,6 +105,11 @@ class Passcode extends Component {
            style={styles.inputField}
            maxLength={1}
            secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_3 === "" ) {
+              this.refs.password_2.focus()
+            }
+          }}
            />
          </View>
          {/* 4 */}
@@ -114,6 +125,11 @@ class Passcode extends Component {
            style={styles.inputField}
            maxLength={1}
            secureTextEntry={true}
+           onKeyPress={({nativeEvent: {key: keyValue}}) => {
+            if(keyValue === "Backspace" && this.state.password_4 === "") {
+              this.refs.password_3.focus()
+            }
+          }}
            />
          </View>
 
@@ -125,7 +141,7 @@ class Passcode extends Component {
         </TouchableOpacity>
        </View>
           </View>
-          <View style={styles.bottomContainer}>
+          <View style={styles.footer}>
           <View style={styles.row}>
        <Text> Need help? </Text>
         <TouchableOpacity onPress={() => Linking.openURL(URL.customerCare) }>
@@ -145,10 +161,17 @@ class Passcode extends Component {
 }
 
 const styles = StyleSheet.create({
+  footer: {
+    position: 'absolute',
+    top: height - 130,
+    right: 0,
+    left: 0,
+    alignItems: "center",
+  },
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    alignItems: "stretch"
+    height: '100%',
+    // justifyContent: "space-between",
   },
   topContainer: {
     flex: 1,
@@ -179,7 +202,7 @@ const styles = StyleSheet.create({
     borderStyle: "dotted",
     borderColor: 'green',
     marginHorizontal: 10,
-    height: 40,
+    height: 50,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -190,7 +213,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.buttonBackground,
     width: '80%',
     borderRadius: 5,
-    padding: 10
+    padding: 10,
+    // marginBottom: 20
   },
   submitText: {
     color: 'white',

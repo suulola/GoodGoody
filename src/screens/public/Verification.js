@@ -38,10 +38,10 @@ class Verification extends Component {
       alert('Wrong Code. Please Try again!!!')
     }
   };
-  // componentDidMount() {
-  //   const code = this.props.navigation.state.params.code
-  //   alert(code)
-  // }
+  componentDidMount() {
+    const code = this.props.navigation.state.params.code
+    alert(code)
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -73,6 +73,11 @@ class Verification extends Component {
                 keyboardType="numeric"
                 style={styles.inputField}
                 maxLength={1}
+                onKeyPress={({nativeEvent: {key: keyValue}}) => {
+                  if(keyValue === "Backspace" && this.state.code_2 === "" ) {
+                    this.refs.code_1.focus()
+                  }
+                }}
               />
             </View>
             {/* 3 */}
@@ -86,6 +91,11 @@ class Verification extends Component {
                 keyboardType="numeric"
                 style={styles.inputField}
                 maxLength={1}
+                onKeyPress={({nativeEvent: {key: keyValue}}) => {
+                  if(keyValue === "Backspace" && this.state.code_3 === "" ) {
+                    this.refs.code_2.focus()
+                  }
+                }}
               />
             </View>
             {/* 4 */}
@@ -99,6 +109,11 @@ class Verification extends Component {
                 keyboardType="numeric"
                 style={styles.inputField}
                 maxLength={1}
+                onKeyPress={({nativeEvent: {key: keyValue}}) => {
+                  if(keyValue === "Backspace" && this.state.code_4 === "" ) {
+                    this.refs.code_3.focus()
+                  }
+                }}
               />
             </View>
           </View>

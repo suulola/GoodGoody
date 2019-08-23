@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage';
+import {connect} from 'react-redux'
+import { setUserDetails } from '../../store/action/auth';
+
 
 class Home extends Component {
 
@@ -9,11 +12,16 @@ class Home extends Component {
       const phoneNumber = await AsyncStorage.getItem('phoneNumber');
       const email = await AsyncStorage.getItem('email');
       const password = await AsyncStorage.getItem('password');
+      const firstName = await AsyncStorage.getItem('firstName');
+      const surname = await AsyncStorage.getItem('surname');
       const userDetails = {
         email,
+        firstName,
+        surname,
         password: +password,
         phoneNumber: +phoneNumber
       }
+      this.props.setUserDetails(userDetails)
       if(phoneNumber !== null) {
 this.props.navigation.navigate("Passcode", {details: userDetails})
        }else {
@@ -60,4 +68,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home
+export default connect(null, {setUserDetails})(Home)

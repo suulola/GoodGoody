@@ -6,69 +6,58 @@ import { logIn } from '../../store/action/auth';
 import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
 import { setUserDetails } from '../../store/action/auth';
+import Icon from "react-native-vector-icons/Ionicons";
 
 
-class Bio extends Component {
+class UpdateProfile extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: (
+      <View style={{ flex: 1, paddingHorizontal: 20, flexDirection: "row", alignItems: "center" }}>
+        <TouchableOpacity onPress={ () => navigation.navigate("Profile") }>
+        <Icon name="md-arrow-back" size={30} style={{marginLeft: 10, marginRight: 40}} />
+        </TouchableOpacity>
+        <Text style={{fontSize: 20, marginHorizontal: 10}}>Update Profile</Text>
+      </View>
+    )
+  });
   state={
     firstName: "",
     middleName: "",
     surname: "",
-    isInvalid: false,
-    email: ""
+    email: "",
+    twitter: "",
+    facebook: ""
   }
 
-  registerUserBio = async () => {
-    const {details} = this.props.navigation.state.params
+  updateUserInfo = async () => {
+    alert("Working on connecting it to database")
 
-    if(this.state.firstName == "" || this.state.surname == "" || this.state.email == "" ) {
-      alert("Required fields not filled")
-      return;
-    }
-    try {
-      // const {firstName, surname, email} = this.state
-      await AsyncStorage.setItem('password', `${details.pin}`)
-      await AsyncStorage.setItem('phoneNumber', `${details.phoneNumber}`)
-      await AsyncStorage.setItem('firstName', this.state.firstName)
-      await AsyncStorage.setItem('surname', this.state.surname)
-      await AsyncStorage.setItem('email', this.state.email)
-      const userDetails = {
-        email: this.state.email,
-        firstName: this.state.firstName,
-        surname: this.state.surname,
-        phoneNumber: +this.state.phoneNumber
-      }
-     await this.props.setUserDetails(userDetails)
-      this.props.logIn()
-    } catch(e) {
-      console.log(e)
-      alert('Something went wrong')
-    }
   }
 
   render() {
-    const {details} = this.props.navigation.state.params
-    console.log(details)
+    const { firstName, twitter, facebook, middleName, surname, phoneNumber, email } = this.props
     return (
       <ScrollView style={styles.container}>
        <View style={styles.topContainer}>
          <Text style={[styles.text, {textAlign: "center", fontSize: 20, marginBottom:5}]}>About You</Text>
          <Text style={styles.text}>Personal Information</Text>
        <TextInputWithLabel
-          placeholder="First Name"
-          isInvalid={this.state.isInvalid}
+          placeholder="First Name *"
           label="First Name"
+          value={firstName}
           onChangeText={firstName => this.setState({firstName})}
         />
        <TextInputWithLabel
           placeholder="Middle Name"
           label="Middle Name"
+          value={middleName}
           onChangeText={middleName => this.setState({middleName})}
 
         />
        <TextInputWithLabel
-          placeholder="Surname"
-          isInvalid={this.state.isInvalid}
+          placeholder="Surname *"
           label="Surname"
+          value={surname}
           onChangeText={surname => this.setState({surname})}
 
         />
@@ -78,22 +67,35 @@ class Bio extends Component {
         <TextInputWithLabel
           label="Phone Number"
           editable={false}
-          value={details.phoneNumber}
+          value={`0${phoneNumber}`}
           prefilled
         />
-          <TextInputWithLabel
-          placeholder="Email"
+        <TextInputWithLabel
+          placeholder="Email *"
           label="Email address"
+          value={email}
           onChangeText={email => this.setState({email})}
+        />
 
+        <TextInputWithLabel
+          placeholder="username@twitter.com"
+          label="Twitter address"
+          value={twitter}
+          onChangeText={twitter => this.setState({twitter})}
+        />
+        <TextInputWithLabel
+          placeholder="username@facebook.com"
+          label="Facebook address"
+          value={facebook}
+          onChangeText={facebook => this.setState({facebook})}
         />
        </View>
        <View style={styles.bottomContainer}>
        <TouchableOpacity
             style={styles.submitButton}
-            onPress={this.registerUserBio}
+            onPress={this.updateUserInfo}
           >
-            <Text style={styles.submitText}>Next</Text>
+            <Text style={styles.submitText}>Update Profile</Text>
           </TouchableOpacity>
        </View>
       </ScrollView>
@@ -133,6 +135,12 @@ const styles = StyleSheet.create({
   },
 })
 
-// const mapStateToProps = state = {}
+const mapStateToProps = state => ({
+  firstName: state.auth.firstName,
+  phoneNumber: state.auth.phoneNumber,
+  email: state.auth.email,
+  surname: state.auth.surname,
+  middleName: state.auth.middleName
+})
 
-export default connect(null, {setUserDetails, logIn})(Bio)
+export default connect(mapStateToProps, {setUserDetails, logIn})(UpdateProfile)

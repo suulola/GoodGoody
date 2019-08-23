@@ -41,28 +41,31 @@ class Login extends Component {
     // generate a random 6 digit number
      let confirmCode = Math.floor(Math.random() * 10 * 1000)
      try {
-      const to = `0${this.state.phoneNumber.slice(1)}`
-      const message = `Welcome to GoodGoody! Your Verification Code is ${confirmCode} `
+      const to = this.state.phoneNumber
+      const message = `Welcome to GoodGoody! Your Verification Number is ${confirmCode} `
       const token = SMSDetails.token
-      const type= SMSDetails.type
+      const type= `${SMSDetails.type}`
       const sender = SMSDetails.sender
-     const response = await fetch(`https://smartsmssolutions.com/api/json.php?sender=${sender}&to=${to}&message=${message}&type=${type}&routing=${3}&token=${token}`, {
-         method: 'POST',
-         headers: {
-          "Content-Type": "application/json"
-        },
-        body: {
-          sender,
-          to,
-          message,
-          type,
-          routing: 3,
-          token,
-        }
+    //  const response = await fetch(`https://smartsmssolutions.com/api/json.php?sender=${sender}&to=${to}&message=${message}&type=${type}&routing=${3}&token=${token}`, {
+    //      method: 'POST',
+    //      headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     body: {
+    //       sender,
+    //       to,
+    //       message,
+    //       type,
+    //       routing: 3,
+    //       token,
+    //     }
 
-       })
-       const responseJSON = await response.json()
-       console.log(responseJSON)
+    //    })
+      //  const responseJSON = await response.json()
+      //  console.log(responseJSON)
+      //  if(responseJSON.code === "1000") {
+
+      //  }
        this.props.navigation.navigate("Verification", {
         details: this.state,
         code: confirmCode
